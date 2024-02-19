@@ -8,9 +8,11 @@ function App() {
  
 
   return (
-   <Routes>
+   <div className="container xl:max-w-screen-xl">
+    <Routes>
     <Route path='/auth' element={<Auth/>}/>
    </Routes>
+   </div>
   )
 }
 

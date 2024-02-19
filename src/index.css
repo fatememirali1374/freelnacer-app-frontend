@@ -6,7 +6,7 @@
 @layer base {
   :root {
    
-      --background-app-rgb: 255, 255, 255;
+      --background-app-rgb: 250, 250, 255;
       --color-primary-900: 74, 109, 255;
       --color-primary-800: 92, 124, 255;
       --color-primary-700: 110, 138, 255;
@@ -36,13 +36,34 @@
   
   }
 }
-
+html, 
+body{
+  padding: 0;
+  margin: 0;
+  font-family: "Vazir";
+  min-height: 100vh;
+  user-select: none;
+  background-color: rgb(var(--background-app-rgb));
+}
 *{
   box-sizing: border-box;
   scroll-behavior: smooth;
-  border: none;
+  /* border: none; */
   outline: none;
   padding: 0;
   margin: 0;
+}
+button{
+  cursor: pointer;
+  outline: none;
+}
+button:disabled{
+  cursor: default;
+  background-color: rgb(var(--color-secondary-100));
+  pointer-events: none;
+  box-shadow: none;
+}
+label{
+  display: block;
 }
 
