@@ -4,15 +4,29 @@ import RHFSelect from "../../ui/RHFSelect";
 import { useState } from "react";
 import Tags from "../../ui/Tags";
 import DatePickerField from "../../ui/DatePickerField";
-
-function CreateProjectForm() {
+import useCategories from "../../hooks/useCategories";
+import useCreateProject from "./useCreateProject";
+import Loading from "../../ui/Loading"
+function CreateProjectForm({onClose}) {
   const { register,
-    formState: { errors }, handleSubmit } = useForm()
+    formState: { errors }, handleSubmit ,reset} = useForm()
+  const { categories } = useCategories()
   const [tags, setTags] = useState([])
-  const [date,setDate]= useState(new Date())
+  const [date, setDate] = useState(new Date())
+  const { createProject, isCreating } = useCreateProject()
   const onSubmit = (data) => {
-    console.log(data);
+    const newProject = {
+      ...data, tags,
+      deadline: new Date(date).toISOString()
+    }
+    createProject(newProject,{
+      onSuccess:()=>{
+        onClose();
+       reset()
+      }
+    })
   }
+  
 
   return (
     <div>
@@ -32,7 +46,7 @@ function CreateProjectForm() {
           errors={errors} />
         <TextField
           label="توضیحات پروژه"
-          name="descaription"
+          name="description"
           register={register}
           required
           validationSchema={{
@@ -59,19 +73,13 @@ function CreateProjectForm() {
           register={register}
           required
           options={
-            [{
-              value: "front",
-              label: "فرانت"
-            },
-            {
-              value: "front2",
-              label: "2فرانت"
-            }]
+            categories
           } />
-   <Tags label="تگ ها " value={tags} onChange={setTags} name="tags"/>
-   <DatePickerField label="ددلاین" date={date} setDate={setDate}/>
-        <button type="submit" className="btn btn--primary w-full">تایید</button>
-      </form>
+        <Tags label="تگ ها " value={tags} onChange={setTags} name="tags" />
+        <DatePickerField label="ددلاین" date={date} setDate={setDate} />
+        <button type="submit" className=" btn btn--primary w-full ">
+                        {isCreating ? (<Loading width="60" height="24"/>) :
+                         (" تایید ")}</button>      </form>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 
 
 function RHFSelect({ label, name, register, options, required }) {
+ 
     return (
         <div>
             <label htmlFor={name}
@@ -8,7 +9,7 @@ function RHFSelect({ label, name, register, options, required }) {
             <select {...register(name)} id={name}
                 className=" textField__input">
                 {options.map((option) => (
-                    <option key={option.value} value={Option.value}>
+                    <option key={option.value} value={option.value}>
                         {option.label}</option>))}
             </select>
         </div>
