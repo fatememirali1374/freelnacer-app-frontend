@@ -7,26 +7,55 @@ import DatePickerField from "../../ui/DatePickerField";
 import useCategories from "../../hooks/useCategories";
 import useCreateProject from "./useCreateProject";
 import Loading from "../../ui/Loading"
-function CreateProjectForm({onClose}) {
+import useEditProject from "./useEditProject";
+function CreateProjectForm({ onClose, projectToEdit = {} }) {
+  
+  const { _id: editId } = projectToEdit
+  const isEditSession = Boolean(editId)
+  const { title, description, budget, category, deadline, tags: prevTags } = projectToEdit;
+
+  let editValues = {}
+  if (isEditSession) {
+    editValues = {
+      title,
+      description,
+      budget,
+      category: category._id || ""
+
+    }
+  }
+
   const { register,
-    formState: { errors }, handleSubmit ,reset} = useForm()
+    formState: { errors }, handleSubmit, reset } = useForm({ defaultValues: editValues })
   const { categories } = useCategories()
-  const [tags, setTags] = useState([])
-  const [date, setDate] = useState(new Date())
+  const [tags, setTags] = useState(prevTags || [])
+  const [date, setDate] = useState(new Date(deadline || ""))
   const { createProject, isCreating } = useCreateProject()
+  const { editProject, isEditing } = useEditProject()
   const onSubmit = (data) => {
     const newProject = {
       ...data, tags,
       deadline: new Date(date).toISOString()
     }
-    createProject(newProject,{
-      onSuccess:()=>{
-        onClose();
-       reset()
-      }
-    })
+    if (isEditSession) {
+      editProject({ newProject, id: editId }, {
+        onSuccess: () => {
+          onClose();
+          reset()
+        }
+      })
+
+    } else {
+      createProject(newProject, {
+        onSuccess: () => {
+          onClose();
+          reset()
+        }
+      })
+    }
+
   }
-  
+
 
   return (
     <div>
@@ -78,8 +107,8 @@ function CreateProjectForm({onClose}) {
         <Tags label="تگ ها " value={tags} onChange={setTags} name="tags" />
         <DatePickerField label="ددلاین" date={date} setDate={setDate} />
         <button type="submit" className=" btn btn--primary w-full ">
-                        {isCreating ? (<Loading width="60" height="24"/>) :
-                         (" تایید ")}</button>      </form>
+          {isCreating ||isEditing ? (<Loading width="60" height="24" />) :
+            (" تایید ")}</button>      </form>
     </div>
   )
 }
