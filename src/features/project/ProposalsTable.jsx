@@ -3,7 +3,7 @@ import Table from "../../ui/Table"
 import ProposalRow from "./ProposalRow"
 
 function ProposalsTable({proposals}) {
-  console.log(proposals);
+
   if (!proposals.length) return <Empty resourceName="درخواستی"/>
   return (
     <div>

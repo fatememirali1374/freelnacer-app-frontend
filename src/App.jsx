@@ -11,6 +11,7 @@ import AppLayout from './ui/AppLayout'
 import OwnerDashboard from './pages/OwnerDashboard'
 import Projects from './pages/Projects'
 import Project from './pages/Project'
+import { DarkModeProvider } from './context/DarkModeContext'
 
 
 // Create a client
@@ -19,7 +20,8 @@ function App() {
 
 
   return (
-    <QueryClientProvider client={queryClient}>
+<DarkModeProvider>
+<QueryClientProvider client={queryClient}>
       <Toaster />
 
       <Routes>
@@ -37,6 +39,7 @@ function App() {
       </Routes>
 
     </QueryClientProvider>
+</DarkModeProvider>
 
   )
 }
