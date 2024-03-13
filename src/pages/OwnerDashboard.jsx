@@ -1,8 +1,9 @@
+import DashbordLayout from "../features/owner/DashbordLayout"
 
 
 function OwnerDashboard() {
   return (
-    <div>Owner Dashboard </div>
+   <DashbordLayout/>
   )
 }
 
