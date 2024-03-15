@@ -2,7 +2,6 @@ import { HiCollection, HiCurrencyDollar, HiOutlineViewGrid } from "react-icons/h
 import Stat from "../../ui/Stat";
 
 function Stats({ projects }) {
-    console.log(projects);
     const numOfProjects = projects.length;
     const numOfAcceptedProjects = projects.filter((p) => p.status === "CLOSED").length;
     const numOfProposals = projects.reduce(

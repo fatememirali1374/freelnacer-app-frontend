@@ -25,8 +25,9 @@ function ChangeProposalStatus({ proposalId, onClose }) {
     const { register, handleSubmit } = useForm()
     const{changeProposalStatus,isUpdating}=useChangeProposalStatus()
     const queryClient = useQueryClient();
+    
     const onSubmit = (data) => {
-       changeProposalStatus({id:proposalId, data},
+       changeProposalStatus({proposalId, projectId, ...data},
         {
             onSuccess:()=>{
                 onClose();

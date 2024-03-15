@@ -6,7 +6,6 @@ import Stats from "./Stats"
 
 function DashbordLayout() {
     const {isLoading, projects}=useOwnerProjects()
-    console.log(projects);
     if(isLoading) return <Loading/>
   return (
     <div>
