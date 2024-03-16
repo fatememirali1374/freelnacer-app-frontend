@@ -1,18 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CheckOTPForm from "./CheckOTPForm"
 import SendOTPForm from "./SendOTPForm"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { getOtp } from "../../services/authService"
 import { useForm } from "react-hook-form"
-
+import useUser from "./useUser"
+import { useNavigate } from "react-router-dom"
 const RESEND_TIME = 90
 
 function AuthContiner() {
+  const navigate= useNavigate()
   const [step, setStep] = useState(1)
   // const [phoneNumber, setPhoneNumber] = useState("")
   const { handleSubmit, register, getValues } = useForm()
   const [time, setTime] = useState(RESEND_TIME)
+
+  
+  const{user}= useUser()
+ useEffect(()=>{
+  if(user) navigate("/", {replace:true})
+ },[user, navigate])
+ 
   const { isPending: isSendingOtp, mutateAsync, data: otpResponse } = useMutation({
     mutationFn: getOtp,
   })

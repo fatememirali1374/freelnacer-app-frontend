@@ -6,7 +6,10 @@ import useMoveBack from '../hooks/useMoveBack'
 function NotFound() {
 const moveBack= useMoveBack();
     return (
-        <div className="container xl:max-w-screen-xl">
+     
+
+<div className=" h-screen bg-secondary-0">
+<div className="container xl:max-w-screen-xl">
         <div className=' sm:max-w-sm flex justify-center pt-10' >
             <div>
                 <h1 className=' text-xl font-bold text-secondary-700 mb-8'>صفحه ی مورد نظر یافت نشد</h1>
@@ -17,6 +20,7 @@ const moveBack= useMoveBack();
             </div>
         </div>
         </div>
+</div>
     )
 }
 

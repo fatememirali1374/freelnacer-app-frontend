@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form"
 import RadioInputGroup from "../../ui/RadioInputGroup"
 
 
+
 function CompleteProfileForm() {
     // const [name, setName] = useState("")
     // const [email, setEmail] = useState("")
@@ -16,9 +17,11 @@ function CompleteProfileForm() {
     const { handleSubmit, register, watch, formState:{errors} } = useForm()
 console.log(errors);
     const navigate = useNavigate();
+
     const { mutateAsync, isPending } = useMutation({
         mutationFn: completeProfile,
     })
+
     const onSubmit = async (data) => {
 
         try {
