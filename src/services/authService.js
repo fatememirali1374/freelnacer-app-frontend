@@ -16,3 +16,9 @@ export function getUser(data){
 export function logoutApi(data){
     return http.post("/user/logout", data).then(({data})=>data.data )
 }
+export function getAllUser(data){
+    return http.get("/admin/user/list", data).then(({data})=>data.data )
+}
+export function changeUserStatusApi({userId,data}) {
+    return http.patch(`/admin/user/verify/${userId}`, data).then(({ data }) => data.data)
+}

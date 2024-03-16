@@ -33,7 +33,7 @@ function ProjectsHeader() {
   return (
 
     <div className=" flex items-center justify-between text-secondary-700 mb-8">
-      <h1 className=" font-bold text-lg"> لیست پروژه ها</h1>
+      <h1 className=" font-black text-secondary-700 text-xl "> لیست پروژه ها</h1>
       <div className=" flex gap-x-2 items-center">
       <Filter filterField="status" options={statusOptions}/>
 

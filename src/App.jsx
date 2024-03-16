@@ -13,11 +13,14 @@ import Project from './pages/Project'
 import { DarkModeProvider } from './context/DarkModeContext'
 import OwnerLayout from './features/owner/OwnerLayout'
 import FreelancerLayout from './features/freelancer/FreelancerLayout'
-import Freelancer from './pages/FreelancerDashboard'
+import FreelancerDashboard from './pages/FreelancerDashboard'
 import Proposals from './pages/Proposals'
 import SubmittedProjects from './pages/SubmittedProjects'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import ProtectedRoute from './ui/ProtectedRoute'
+import AdminLayout from './features/admin/AdminLayout'
+import AdminDashboard from './pages/AdminDashboard'
+import Users from './pages/Users'
 
 
 // Create a client
@@ -50,10 +53,20 @@ function App() {
             <FreelancerLayout />
             </ProtectedRoute>} >
             <Route index element={<Navigate to="dashboard" replace />} />
-            <Route path='dashboard' element={<Freelancer />} />
+            <Route path='dashboard' element={<FreelancerDashboard />} />
             <Route path='proposals' element={<Proposals />} />
             <Route path='projects' element={<SubmittedProjects />} />
             <Route path='projects/:id' element={<Project />} />
+          </Route>
+          <Route path='/admin' 
+          element={<ProtectedRoute>
+            <AdminLayout />
+            </ProtectedRoute>} >
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path='dashboard' element={<AdminDashboard />} />
+            <Route path='users' element={<Users />} />
+            <Route path='proposals' element={<Proposals />} />
+            <Route path='projects' element={<SubmittedProjects />} />
           </Route>
         </Routes>
 

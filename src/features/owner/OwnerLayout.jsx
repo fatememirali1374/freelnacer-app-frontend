@@ -1,4 +1,4 @@
-import { HiCollection, HiHome } from "react-icons/hi"
+import {  HiHome, HiOutlineViewGrid } from "react-icons/hi"
 import AppLayout from "../../ui/AppLayout"
 import CustomNavLink from "../../ui/CustomNavLink"
 import Sidebar from "../../ui/Sidebar"
@@ -16,7 +16,7 @@ function OwnerLayout() {
 
 
                 <CustomNavLink to="projects">
-                    <HiCollection />
+                    <HiOutlineViewGrid />
                     <span>پروژه ها</span>
                 </CustomNavLink>
 

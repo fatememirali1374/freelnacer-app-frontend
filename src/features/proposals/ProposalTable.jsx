@@ -6,7 +6,7 @@ import useProposals from "./useProposals"
 
 function ProposalTable() {
    const {isLoading,proposals}=useProposals()
- console.log(proposals);
+
     if (isLoading) return <Loading />
     if (!proposals.length) return <Empty resourceName="پروپزال" />
     return (

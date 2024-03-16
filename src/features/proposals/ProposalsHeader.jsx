@@ -3,7 +3,7 @@
 function ProposalsHeader() {
 
   return (
-    <h1 className=" font-bold text-secondary-700 text-xl mb-8">پروپزال های شما</h1>
+    <h1 className=" font-black text-secondary-700 text-xl mb-8">لیست پروپزال ها</h1>
 
   )
 }
